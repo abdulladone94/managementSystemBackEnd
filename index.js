@@ -41,6 +41,16 @@ app.post("/create", (req, res) => {
   );
 });
 
+app.get("/employee", (req, res) => {
+  db.query("SELECT * FROM employee", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.listen(3001, () => {
   console.log("Port 3001 started running");
 });
