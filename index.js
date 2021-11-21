@@ -51,6 +51,35 @@ app.get("/employee", (req, res) => {
   });
 });
 
+// db.query(
+//   "UPDATE employee SET name = 'Ammar', age='26', country='Ostriya', position='Administrater', wage='220000'  WHERE id=6",
+//   (err, result) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log(result);
+//     }
+//   }
+// );
+
+app.put("/update", (req, res) => {
+  const name = req.body.name;
+  const id = req.body.id;
+  db.query(
+    "UPDATE employee SET name=? WHERE id=?",
+    [name, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+// db.query("DELETE FROM employee WHERE id IN (13,14,15,16,17,18)");
+
 app.listen(3001, () => {
   console.log("Port 3001 started running");
 });
